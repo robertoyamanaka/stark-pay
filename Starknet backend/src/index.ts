@@ -8,7 +8,15 @@ import { AlchemyProvider, Wallet } from 'ethers';
 
 const app = express();
 app.use(express.json());  // Needed to parse JSON from requests
+const { createLightNode } = require('@waku/sdk');
+const protobuf = require('protobufjs');
+const { createEncoder } = require('@waku/sdk');
 
+// Define your message structure using Protobuf
+const ChatMessage = new protobuf.Type("ChatMessage")
+ .add(new protobuf.Field("timestamp", 1, "uint64"))
+ .add(new protobuf.Field("sender", 2, "string"))
+ .add(new protobuf.Field("message", 3, "string"));
 // Define interface for your expected JSON input
 interface MyJson {
     user: string;
@@ -101,6 +109,58 @@ app.get('/balance', async (req, res) => {
     }
 });
 
+let node;
+createLightNode({ defaultBootstrap: true }).then(n => {
+ node = n;
+ return node.start();
+}).then(() => {
+ console.log('Waku Light Node started');
+});
+
+// Create an encoder for your message structure
+const contentTopic = "/light-guide/1/message/proto";
+const encoder = createEncoder({ contentTopic });
+
+// Array to store sent messages
+let messages = [];
+
+// Define the Express endpoint to send a message
+app.post('/send-message', async (req, res) => {
+ const { sender, message } = req.body;
+
+ // Create a new message object
+ const protoMessage = ChatMessage.create({
+    timestamp: Date.now(),
+    sender,
+    message,
+ });
+
+ // Serialize the message using Protobuf
+ const serialisedMessage = ChatMessage.encode(protoMessage).finish();
+
+ // Send the message using Light Push
+ try {
+    await node.lightPush.send(encoder, {
+      payload: serialisedMessage,
+    });
+    // Store the sent message
+    messages.push(protoMessage);
+    res.status(200).send('Message sent successfully');
+ } catch (error) {
+    console.error('Error sending message:', error);
+    res.status(500).send('Error sending message');
+ }
+});
+
+// Define the Express endpoint to get the last message
+app.get('/last-message', (req, res) => {
+ if (messages.length > 0) {
+    // Return the last message
+    res.status(200).json(messages[messages.length - 1]);
+ } else {
+    res.status(404).send('No messages found');
+ }
+});
 
 // listen for incoming requests
 app.listen(3001);
