@@ -15,16 +15,29 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.robertoyamanaka.starkpay"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.NFC"
+      ],
+      "package": "com.robertoyamanaka.starkpay"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "react-native-nfc-manager"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "cbcb47e3-5bb8-43a3-af07-870dad4542d0"
+      }
     }
   }
 }
