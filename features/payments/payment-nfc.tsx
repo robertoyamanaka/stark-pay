@@ -56,7 +56,7 @@ export default function PaymentNfc() {
             return;
           }
           const cobrarInput = {
-            user: "0x052e5577e4126f08da297013073dfea3e98932e79088895f5c428bd28c62ae32",
+            user: address,
             merchant:
               "0x0546501475912C61eA1862693D2f4A542050A64619bAE0492250c57dCd0E2AAa",
             amount: parseFloat(amount),
