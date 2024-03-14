@@ -53,7 +53,8 @@ La opción más barata de latinoamérica para cobros digitales. Acepta dólar di
     <img src="pantalla5.PNG" width="500"/>
     <br>
 <p>
-3. Paga con tu tarjeta en cualquier comercio con el logo de StarkPay
+3. Paga con tu tarjeta en cualquier comercio con el logo de StarkPay.
+4. Waku te avisará cuando llegue tu dinero.
 
 ### Contenido del repositorio
 Éste proyecto está pensado para replicarse y experimentar nuevas formas de incluir a la población no bancarizada de latinoamérica a opciones para cobrar, pagar e invertir sus ingresos.
