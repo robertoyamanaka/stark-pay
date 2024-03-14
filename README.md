@@ -60,3 +60,33 @@ La opción más barata de latinoamérica para cobros digitales. Acepta dólar di
     <br>
 <p>
 3. Paga con tu tarjeta en cualquier comercio con el logo de StarkPay
+
+### Contenido del repositorio
+Éste proyecto está pensado para replicarse y experimentar nuevas formas de incluir a la población no bancarizada de latinoamérica a opciones para cobrar, pagar e invertir sus ingresos.
+
+El repositorio contiene:
+1. Aplicación en React Native con integración de NFC y FaceID.
+2. Backend para transferir ERC-20 en Starknet.
+3. Backend para transferir ERC-20 en Scroll.
+4. Ejemplo de cómo integrar Metapool.
+5. Contrato de ERC-20
+
+### ADVERTENCIA Y FUNCIONALIDADES PENDIENTES
+Starkpay fue desarrollado durante ETH LATAM 2024. No está listo para ser usado en producción por motivos de seguridad.
+
+Funcionalidades que faltan:
+1. Crear wallet con FaceID al momento de registrarse en Starkpay. (Usa account abstraction nativo de Starknet)
+2. Decentralizar el backend. (Puedes usar ICP)
+3. Integrar off-ramp.
+
+### El futuro de LATAM se construye en español
+Contáctanos para feedback o abre un issue en este repositorio.
+-  Carlos https://linktr.ee/diosplan
+-  Roberto https://linktr.ee/robertoyamanaka
+-  Toño https://linktr.ee/toony1908
+
+### Aprende más
+Estos son recursos que puedes consultar para seguir construyendo la infraestructura financiera de LATAM.
+1. El libro de Starknet https://book.starknet.io/es/index.html
+2. Documentación de Scroll https://docs.scroll.io/es/home/
+3. Documentación de Metapool https://docs.metapool.app/master
