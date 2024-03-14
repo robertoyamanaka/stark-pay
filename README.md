@@ -16,6 +16,7 @@ La opción más barata de latinoamérica para cobros digitales. Acepta dólar di
 | Burrita Loca (BRR) on Starknet contract address | https://goerli.voyager.online/contract/0x07e4a44d5d8c9ebd88fb40ca3fe2293178c4e7fe980d91232eaf967bb632ddd0 |
 | Burrita Loca (BRR) on Scroll testnet contract address | https://sepolia.scrollscan.dev/address/0x52A13eF30Da4a73aAB8CB1d033C37dB201ea014c |
 | Metapool Endpoint | pendiente... |
+| Pitch Deck | https://docs.google.com/presentation/d/1wiwfKNda18KLr37W46VBkOegxWZhi2Ub8ijhb-qvMdI/edit?usp=sharing |
 
 
 ## ¿Cómo funciona?
