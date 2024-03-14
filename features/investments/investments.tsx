@@ -4,27 +4,15 @@ import {
   Text,
   TouchableWithoutFeedback,
   Keyboard,
-  ImageBackground,
   FlatList,
-  Dimensions,
   ScrollView,
 } from "react-native";
-import { useState } from "react";
-import { PrimaryButton } from "@/components/buttons/primary-button";
-import { SimpleInput } from "@/components/simple-input";
-import { Image } from "expo-image";
 import * as LocalAuthentication from "expo-local-authentication";
-import { CoinSquare } from "@/components/coin-square";
 import PossibleInvestments from "./possible-investments";
+import { useGetBalance } from "./hooks/use-get-balance";
 
 export default function Investments() {
-  const [amount, setAmount] = useState("");
-  const handle = async () => {
-    if (await authenticate()) {
-      console.log("Authenticated so adding money");
-    }
-  };
-
+  const { data:balance, isSuccess } = useGetBalance();
   const authenticate = async () => {
     try {
       const hasHardware = await LocalAuthentication.hasHardwareAsync();
@@ -65,14 +53,18 @@ export default function Investments() {
             >
               <Text style={styles.title}>Tus inversiones</Text>
               <View style={styles.inversionesContainer}>
-                <Text style={styles.subTitle}>Saldo Total</Text>
-                <Text style={styles.balance}>$1,600</Text>
+                <Text style={styles.subTitle}>Inversión</Text>
+                <Text style={styles.balance}>${balance || "23,500"}</Text>
                 <Text style={styles.apyReturn}>+ 33%</Text>
               </View>
               <View style={styles.inversionesContainer}>
-                <Text style={styles.subTitleRed}>Saldo no aprovechado</Text>
-                <Text style={styles.balanceRed}>$1200</Text>
+                <Text style={styles.subTitleRed}>Dinero no aprovechado</Text>
+                <Text style={styles.balanceRed}>$1,200</Text>
               </View>
+              <View style={styles.invierteSection}>
+                <Text style={styles.invierteTitle}>Invierte con Metapool</Text>
+              </View>
+              
               <PossibleInvestments />
             </ScrollView>
           </TouchableWithoutFeedback>
@@ -94,11 +86,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-
+    paddingTop: 20,
     backgroundColor: "#0C0C4C",
-    padding: 10,
+
   },
   inversionesContainer: {
+    paddingHorizontal: 20,
     marginTop: 20,
     width: "100%",
     justifyContent: "flex-start",
@@ -112,6 +105,7 @@ const styles = StyleSheet.create({
   apyReturn: {
     color: "green",
     fontSize: 16,
+    fontWeight: "bold",
   },
 
   subTitleRed: { color: "red", fontSize: 16 },
@@ -121,6 +115,22 @@ const styles = StyleSheet.create({
   },
 
   title: { color: "#FFF", fontSize: 32, marginTop: 30 },
+  invierteSection: {
+    width: "150%",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: "#CEFF1A",
+    paddingBottom: 20,
+    marginTop: 20,
+  },
+  invierteTitle: { 
+    color: "#0C2246",
+    fontSize: 24,
+    marginTop: 20,
+    fontWeight: "bold",
+    paddingLeft: 0,
+  },
+  
 
   backgroundImage: {
     width: "100%",
@@ -128,21 +138,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
 
-  modalText: { marginBottom: 15, textAlign: "center" },
 });

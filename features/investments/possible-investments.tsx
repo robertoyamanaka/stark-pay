@@ -1,5 +1,5 @@
 import { PrimaryButton } from "@/components/buttons/primary-button";
-import { CoinSquare } from "@/components/coin-square";
+import { CoinSquare } from "@/features/investments/coin-square";
 import { View, Text, FlatList, Dimensions, StyleSheet } from "react-native";
 
 type Web3Network = {
@@ -12,51 +12,27 @@ type Web3Network = {
 const web3Networks: Web3Network[] = [
   {
     id: "1",
-    name: "Ethereum",
+    name: "ethereum",
     apy: 5.3,
     logo: "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029",
   },
   {
     id: "2",
-    name: "Binance",
-    apy: 1.0,
-    logo: "https://cryptologos.cc/logos/binance-coin-bnb-logo.png",
+    name: "near",
+    apy: 1.1,
+    logo: "https://cryptologos.cc/logos/near-protocol-near-logo.png",
   },
   {
     id: "3",
-    name: "Polygon",
+    name: "aurora",
     apy: 2.3,
-    logo: "https://cryptologos.cc/logos/polygon-matic-logo.png",
-  },
-  {
-    id: "4",
-    name: "Avalanche",
-    apy: 3.5,
-    logo: "https://cryptologos.cc/logos/avalanche-avax-logo.png",
+    logo: "https://cryptologos.cc/logos/aurora-aoa-logo.png?v=002",
   },
   {
     id: "5",
-    name: "Solana",
+    name: "sol",
     apy: 4.5,
     logo: "https://cryptologos.cc/logos/solana-sol-logo.png",
-  },
-  {
-    id: "6",
-    name: "Cardano",
-    apy: 3.5,
-    logo: "https://cryptologos.cc/logos/cardano-ada-logo.png",
-  },
-  {
-    id: "7",
-    name: "Polkadot",
-    apy: 3.5,
-    logo: "https://cryptologos.cc/logos/polkadot-new-dot-logo.png",
-  },
-  {
-    id: "8",
-    name: "Chainlink",
-    apy: 3.5,
-    logo: "https://cryptologos.cc/logos/chainlink-link-logo.png",
   },
 ];
 

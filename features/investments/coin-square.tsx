@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import { Image } from "expo-image";
 import { BlurView } from "expo-blur";
 
@@ -10,8 +16,20 @@ interface CoinSquareProps {
 }
 
 export function CoinSquare({ imageUrl, name, apy }: CoinSquareProps) {
+  const handlePress = async (name: string) => {
+    // Check if the link is supported
+    const url = `https://www.metapool.app/stake?token=${name}`;
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    }
+  };
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      onPress={() => handlePress(name)}
+      style={styles.container}
+    >
       <BlurView style={styles.blur} tint="light" intensity={30}>
         <Image style={styles.image} source={{ uri: imageUrl }} />
         <Text style={styles.name}>{name}</Text>
@@ -54,6 +72,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
     marginTop: 4,
-
   },
 });

@@ -17,8 +17,6 @@ interface CobrarResponse {
   // Structure of your response data
 }
 
-// https://nfcbackend-three.vercel.app/api/transferfrom de charlie
-
 export const usePostCobrar = () => {
   return useMutation<CobrarResponse, Error, CobrarInput>({
     mutationFn: async (cobrarData: CobrarInput) => {

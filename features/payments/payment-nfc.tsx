@@ -20,12 +20,6 @@ import { Image } from "expo-image";
 import { usePostCobrar } from "./hooks/use-post-cobrar";
 import { CoinSquareForPayment } from "./coin-square-payment";
 
-interface NfcTag {
-  id: string; // Unique identifier of the tag
-  ndefMessage: Array<any>; // Array of NDEF records, adjust 'any' to be more specific if needed
-  // Add other relevant properties based on your use case
-}
-
 const coins = [
   {
     id: "1",
@@ -156,8 +150,8 @@ const styles = StyleSheet.create({
   },
   title: { color: "#FFF", fontSize: 32 },
   selfiePlaceholder: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
     backgroundColor: "transparent",
   },
   modalView: {
