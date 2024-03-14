@@ -10,16 +10,27 @@ interface CobrarInput {
   merchant: string;
   amount: number;
   paymentId: number;
+  coinName: string;
 }
 
 interface CobrarResponse {
   // Structure of your response data
 }
 
+// https://nfcbackend-three.vercel.app/api/transferfrom de charlie
+
 export const usePostCobrar = () => {
   return useMutation<CobrarResponse, Error, CobrarInput>({
-    mutationFn: async (CobrarData: CobrarInput) => {
-      const response = await axios.post(`${BACKEND_URL}/api/Cobrarfrom`, CobrarData);
+    mutationFn: async (cobrarData: CobrarInput) => {
+      const { coinName } = cobrarData
+      let url = ""
+      if (coinName === "USDC") {
+        url = 'https://nfcbackend-three.vercel.app/api/transferfrom'
+      }
+      else {
+          url = 'https://2232-190-92-22-59.ngrok-free.app/send'
+      }
+      const response = await axios.post(url, cobrarData);
       return response.data;
     },
   });
