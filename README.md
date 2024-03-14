@@ -14,8 +14,7 @@ La opción más barata de latinoamérica para cobros digitales. Acepta dólar di
 |---|---|
 | USDC on Starknet contract address | https://goerli.voyager.online/contract/0x005a643907b9a4bc6a55e9069c4fd5fd1f5c79a22470690f75556c4736e34426 |
 | Burrita Loca (BRR) on Starknet contract address | https://goerli.voyager.online/contract/0x07e4a44d5d8c9ebd88fb40ca3fe2293178c4e7fe980d91232eaf967bb632ddd0 |
-| Burrita Loca (BRR) on Scroll testnet contract address | https://sepolia.scrollscan.dev/address/0x52A13eF30Da4a73aAB8CB1d033C37dB201ea014c |
-| Metapool Endpoint | pendiente... |
+| ERC-20 Burrita Loca (BRR) on Scroll testnet contract address | https://sepolia.scrollscan.dev/address/0x52A13eF30Da4a73aAB8CB1d033C37dB201ea014c |
 | Pitch Deck | https://docs.google.com/presentation/d/1wiwfKNda18KLr37W46VBkOegxWZhi2Ub8ijhb-qvMdI/edit?usp=sharing |
 
 
@@ -64,7 +63,8 @@ El repositorio contiene:
 2. Backend para transferir ERC-20 en Starknet.
 3. Backend para transferir ERC-20 en Scroll.
 4. Ejemplo de cómo integrar Metapool.
-5. Contrato de ERC-20
+5. Contrato de ERC-20.
+6. Endpoint para hacer staking en Metapool.
 
 ### ADVERTENCIA Y FUNCIONALIDADES PENDIENTES
 Starkpay fue desarrollado durante ETH LATAM 2024. No está listo para ser usado en producción por motivos de seguridad.
