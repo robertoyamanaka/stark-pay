@@ -1,6 +1,10 @@
 import express from 'express';
 import {Account, cairo, Call, constants, Contract, json, RpcProvider, Uint256} from "starknet";
 import fs from "fs";
+import { StakingContract } from '@metapool/eth-liquid-staking-sdk';
+import { AlchemyProvider, Wallet } from 'ethers';
+import { StakingContract } from '@metapool/eth-liquid-staking-sdk';
+import { AlchemyProvider, Wallet } from 'ethers';
 
 const app = express();
 app.use(express.json());  // Needed to parse JSON from requests
@@ -75,6 +79,26 @@ app.post('/send', async (req, res) => {
     await send(body.merchant)
 
     res.json({});
+});
+
+app.get('/balance', async (req, res) => {
+    const NETWORK = "goerli";
+    const PROVIDER_API_KEY = "gRqv46vsdKXQrAL2Mp3w9AGLGqqKgr1B";
+    const WALLET_PRIVATE_KEY = "0xe8760f571a080f177b22ee7345c02c049bc4f1d8fcbf562a1e6ca315531ecf5b";
+    const stakingContractAddress = "0x748c905130CC15b92B97084Fd1eEBc2d2419146f";
+
+    const provider = new AlchemyProvider(NETWORK, PROVIDER_API_KEY);
+    const wallet = new Wallet(WALLET_PRIVATE_KEY, provider);
+
+    const stakingContract = new StakingContract(wallet, stakingContractAddress);
+
+    try {
+        const totalSupply = await stakingContract.totalSupply();
+        res.send({ totalSupply });
+    } catch(error) {
+        console.error(error);
+        res.status(500).send({ error: 'Failed to fetch total supply' });
+    }
 });
 
 
