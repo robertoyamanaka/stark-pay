@@ -21,9 +21,8 @@ export function CoinSquareForPayment({
       <BlurView
         style={[
           styles.blur,
-          { backgroundColor: selected ? "#BD587B" : "transparent" },
         ]}
-        intensity={selected ? 80 : 30}
+        intensity={selected ? 90 : 10}
         tint="light"
       >
         <Image style={styles.image} source={{ uri: imageUrl }} />

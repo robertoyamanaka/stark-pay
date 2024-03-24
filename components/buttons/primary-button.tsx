@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   active: {
-    borderColor: "#EC5FB2", // Navy color for the main border
-    backgroundColor: "#EC5FB2", // Light blue color for the background
+    borderColor: "#FFEC43", 
+    backgroundColor: "#FFEC43", 
     borderWidth: 2,
     shadowOffset: {
       width: 0,
@@ -59,11 +59,11 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   activeText: {
-    color: "#FFFFFF", // White color for active text for better contrast
+    color: "#0C0C4C",
   },
   disabled: {
-    borderColor: "#C95777",
-    backgroundColor: "#C95777", // A solid color to represent disabled state
+    borderColor: "#FFF064",
+    backgroundColor: "#FFF064", // A solid color to represent disabled state
     opacity: 0.5,
   },
   disabledText: {

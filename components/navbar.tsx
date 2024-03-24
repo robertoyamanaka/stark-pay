@@ -11,38 +11,59 @@ interface NavbarProps {
 
 export function Navbar({ selected, setSelected }: NavbarProps) {
   return (
-    <View style={styles.container} >
-      <TouchableOpacity onPress={() => setSelected("charge")}>
-        <View
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={[styles.iconWrapper, selected === "charge" && styles.selected]}
+        onPress={() => setSelected("charge")}
+      >
+        <BlurView
           style={[
             styles.iconContainer,
             selected === "charge" && styles.selected,
           ]}
+          intensity={selected === "charge" ? 90 : 0}
+          tint="light"
         >
           <Text style={styles.icon}>🤝</Text>
-        </View>
+        </BlurView>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => setSelected("add-balance")}>
-        <View
+      <TouchableOpacity
+        style={[
+          styles.iconWrapper,
+          selected === "add-balance" && styles.selected,
+        ]}
+        onPress={() => setSelected("add-balance")}
+      >
+        <BlurView
           style={[
             styles.iconContainer,
             selected === "add-balance" && styles.selected,
           ]}
+          intensity={selected === "add-balance" ? 90 : 0}
+          tint="light"
         >
           <Text style={styles.icon}>💸</Text>
-        </View>
+        </BlurView>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => setSelected("investments")}>
-        <View
+      <TouchableOpacity
+        style={[
+          styles.iconWrapper,
+          selected === "investments" && styles.selected,
+        ]}
+        onPress={() => setSelected("investments")}
+      >
+        <BlurView
           style={[
             styles.iconContainer,
             selected === "investments" && styles.selected,
           ]}
+          intensity={selected === "investments" ? 90 : 0}
+          tint="light"
         >
           <Text style={styles.icon}>📈</Text>
-        </View>
+        </BlurView>
       </TouchableOpacity>
     </View>
   );
@@ -58,7 +79,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     overflow: "hidden",
   },
+  iconWrapper: {
+    borderRadius: 20, // Applied to the TouchableOpacity
+    overflow: "hidden", // Ensure this is set to clip the BlurView
+  },
   iconContainer: {
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
@@ -68,6 +94,5 @@ const styles = StyleSheet.create({
   },
   selected: {
     borderRadius: 10, // Adjust for rounded corners
-    backgroundColor: "#DA7E83", // Background color for selected item
   },
 });
