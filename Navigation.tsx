@@ -1,64 +1,37 @@
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createStackNavigator } from "@react-navigation/stack";
+import { View } from "react-native";
+import { LocationState, Navbar } from "./components/navbar";
+import { ClerkLoaded, useUser } from "@clerk/clerk-expo";
+import { useState } from "react";
+import { PaymentNfc } from "./features/payments/components/payment-nfc";
+import AddMoney from "./features/add-funds/add-money";
+import Investments from "./features/investments/investments";
+import { SignInWUsername } from "./features/enter-platform/sign-in/sign-in";
+import { SignUpScreen } from "./features/enter-platform/sign-up/sign-up";
 
-// import { AskPayment } from "./features/payments/ask-payment";
-// import PaymentNfc from "./features/payments/payment-nfc";
+export type RootStackParamList = {
+  Home: undefined;
+  AskPayment: undefined;
+  PaymentNfc: { amount: number };
+};
 
-// export type RootStackParamList = {
-//   Home: undefined;
-//   AskPayment: undefined;
-//   PaymentNfc: { amount: number };
-// };
-// const Stack = createStackNavigator<RootStackParamList>();
-
-// export function Navigation() {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator
-//         screenOptions={{
-//           headerShown: true,
-//           headerStyle: {
-//             backgroundColor: "black", //"#1D1D26",
-//             shadowColor: "transparent",
-//             borderBottomColor: "#333340",
-//             borderBottomWidth: 0,
-//           },
-//           headerTintColor: "#fff",
-//           headerTitleStyle: {
-//             fontSize: 24,
-//           },
-//           headerBackTitleVisible: true
-//         }}
-//       >
-//         <>
-//           <Stack.Screen
-//             name="AskPayment"
-//             component={AskPayment}
-//             options={{
-//               headerShown: false,
-//               title: "Pedir pago",
-//               headerStyle: {
-//                 backgroundColor: "white", //"#1D1D26",
-//                 shadowColor: "transparent",
-//                 borderBottomColor: "#333340",
-//                 borderBottomWidth: 0,
-//               },
-//             }}
-//           />
-//           <Stack.Screen
-//             name="PaymentNfc"
-//             component={PaymentNfc}
-//             options={{
-//               headerStyle: {
-//                 backgroundColor: "#0C0C4C", //"#1D1D26",
-//                 shadowColor: "transparent",
-//                 borderBottomWidth: 0,
-//               },
-//               title: "Acerca el dispositivo",
-//             }}
-//           />
-//         </>
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
+export function Navigation() {
+  const [location, setLocation] = useState<LocationState>("charge");
+  const { isSignedIn } = useUser();
+  console.log("isSignedIn", isSignedIn);
+  
+  return (
+    <ClerkLoaded>
+      {isSignedIn ? (
+        <View style={{ flex: 1 }}>
+          {location === "charge" && <PaymentNfc />}
+          {location === "add-balance" && <AddMoney />}
+          {location === "investments" && <Investments />}
+          <Navbar selected={location} setSelected={setLocation} />
+        </View>
+      ) : (
+        <SignInWUsername />
+        // <SignUpScreen />
+      )}
+    </ClerkLoaded>
+  );
+}

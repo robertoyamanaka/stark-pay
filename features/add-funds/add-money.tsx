@@ -7,13 +7,16 @@ import {
   ImageBackground,
   Alert,
 } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PrimaryButton } from "@/components/buttons/primary-button";
 import { SimpleInput } from "@/components/simple-input";
 import { Image } from "expo-image";
 import * as LocalAuthentication from "expo-local-authentication";
+import { useAuth } from "@clerk/clerk-expo";
+import NormalButton from "@/components/buttons/normal-button";
 
 export default function AddMoney() {
+  const { getToken } = useAuth();
   const [balance, setBalance] = useState(1200);
   const [amount, setAmount] = useState("");
 
@@ -54,10 +57,21 @@ export default function AddMoney() {
     }
   };
 
+  
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const token = await getToken({ template: 'web3auth' });
+      console.log("clerk token:", token);
+    }
+    console.log("fetching token");
+    fetchToken();
+  }, []);
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1 }}>
       <View style={styles.container}>
-        <ImageBackground
+        {/* <ImageBackground
           source={require("@/assets/credit-card-white.png")}
           style={styles.backgroundImage}
         >
@@ -67,7 +81,7 @@ export default function AddMoney() {
               <Text style={styles.amountStyle}> + ${amount}</Text>
             )}
           </Text>
-        </ImageBackground>
+        </ImageBackground> */}
 
         <Text style={styles.title}>Agregar Dinero</Text>
         <SimpleInput
